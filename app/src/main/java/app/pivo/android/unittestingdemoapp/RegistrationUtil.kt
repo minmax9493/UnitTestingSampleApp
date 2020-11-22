@@ -5,7 +5,7 @@ package app.pivo.android.unittestingdemoapp
  */
 object RegistrationUtil {
 
-    private val existingUsers = listOf<String>("Botir", "Bahodir")
+    private val existingUsers = listOf("Botir", "Bahodir")
 
     fun validateRegistrationInput(
         userName:String,
