@@ -1,1 +1,8 @@
+*.iml
+.gradle
+/local.properties
+/.ideas/chaches
+.DS_STORE
+/.ideas/libraries
 /build
+gradle.properties
