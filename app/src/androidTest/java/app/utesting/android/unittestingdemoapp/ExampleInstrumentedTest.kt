@@ -1,4 +1,4 @@
-package app.pivo.android.unittestingdemoapp
+package app.utesting.android.unittestingdemoapp
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

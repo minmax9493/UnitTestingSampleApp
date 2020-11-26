@@ -1,4 +1,4 @@
-package app.pivo.android.unittestingdemoapp.data.local
+package app.utesting.android.unittestingdemoapp.data.local
 
 /**
  * Created by murodjon on 2020/11/22

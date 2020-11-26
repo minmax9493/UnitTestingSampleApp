@@ -1,4 +1,4 @@
-package app.pivo.android.unittestingdemoapp
+package app.utesting.android.unittestingdemoapp
 
 import android.content.Context
 
