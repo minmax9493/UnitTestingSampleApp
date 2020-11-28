@@ -2,10 +2,13 @@ package app.utesting.android.unittestingdemoapp.di
 
 import android.content.Context
 import androidx.room.Room
+import app.utesting.android.unittestingdemoapp.data.local.ShoppingDao
 import app.utesting.android.unittestingdemoapp.data.local.ShoppingItemDatabase
 import app.utesting.android.unittestingdemoapp.data.remote.PixabayAPI
 import app.utesting.android.unittestingdemoapp.other.Constants.BASE_URL
 import app.utesting.android.unittestingdemoapp.other.Constants.DATABASE_NAME
+import app.utesting.android.unittestingdemoapp.repositories.DefaultShoppingRepository
+import app.utesting.android.unittestingdemoapp.repositories.ShoppingRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -43,4 +46,10 @@ object AppModule {
             .build()
             .create(PixabayAPI::class.java)
     }
+
+    @Singleton
+    @Provides
+    fun provideDefaultShoppingRepo(
+            dao: ShoppingDao,
+            api: PixabayAPI) = DefaultShoppingRepository(dao, api) as ShoppingRepository
 }

@@ -1,7 +1,8 @@
-package app.utesting.android.unittestingdemoapp
+package app.utesting.android.unittestingdemoapp.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import app.utesting.android.unittestingdemoapp.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
