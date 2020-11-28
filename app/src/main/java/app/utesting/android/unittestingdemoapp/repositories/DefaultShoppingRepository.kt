@@ -33,6 +33,17 @@ class DefaultShoppingRepository @Inject constructor(
     }
 
     override suspend fun searchForImage(imageQuery: String): Resource<ImageResponse> {
-        TODO()
+        return try{
+            val response = pixelbayAPI.searchForImage(imageQuery)
+            if (response.isSuccessful){
+                response.body()?.let {
+                    return@let Resource.success(it)
+                }?:Resource.error("An unknown error occured.", null)
+            }else{
+                Resource.error("An unkown error occured", null)
+            }
+        }catch (e:Exception){
+            Resource.error("Could not reach the server. Check your internet connection", null)
+        }
     }
 }
