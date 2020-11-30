@@ -6,6 +6,8 @@ import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SmallTest
 import app.utesting.android.unittestingdemoapp.getOrAwaitValue
+import app.utesting.android.unittestingdemoapp.launchFragmentInHiltContainer
+import app.utesting.android.unittestingdemoapp.ui.ShoppingFragment
 import com.google.common.truth.Truth
 import com.google.common.truth.Truth.assertThat
 import dagger.hilt.android.testing.HiltAndroidRule
@@ -35,7 +37,7 @@ import javax.inject.Named
 @HiltAndroidTest
 class ShoppingDaoTest {
 
-    private lateinit var dao: ShoppingDao
+    lateinit var dao: ShoppingDao
 
     @get:Rule
     var hiltRule = HiltAndroidRule(this)
@@ -60,6 +62,17 @@ class ShoppingDaoTest {
     @After
     fun close(){
         database.close()
+    }
+
+    @Test
+    fun testLaunchFragmentInHiltContainer(){
+        /**
+         * Make sure the device you are running the tests on is unlocked.
+         * If the screen is off or at the lock screen you will get a stack trace that looks roughly like this:
+         */
+        launchFragmentInHiltContainer<ShoppingFragment> {
+
+        }
     }
 
     @Test
