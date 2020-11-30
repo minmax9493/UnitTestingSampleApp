@@ -33,6 +33,10 @@ class ShoppingDaoTest {
     private lateinit var database: ShoppingItemDatabase
     private lateinit var dao: ShoppingDao
 
+    /**
+     * A JUnit Test rule that swaps the background executor used by the Architecture
+     * Components with a different one which executes each task synchronously
+     */
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
 
