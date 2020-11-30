@@ -8,6 +8,8 @@ import androidx.test.filters.SmallTest
 import app.utesting.android.unittestingdemoapp.getOrAwaitValue
 import com.google.common.truth.Truth
 import com.google.common.truth.Truth.assertThat
+import dagger.hilt.android.testing.HiltAndroidRule
+import dagger.hilt.android.testing.HiltAndroidTest
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.After
@@ -15,6 +17,8 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import javax.inject.Inject
+import javax.inject.Named
 
 /**
  * Created by murodjon on 2020/11/26
@@ -26,12 +30,15 @@ import org.junit.runner.RunWith
  * @SmallTest , MediumTest, LargeTest
  */
 @ExperimentalCoroutinesApi
-@RunWith(AndroidJUnit4::class)
+//@RunWith(AndroidJUnit4::class)
 @SmallTest
+@HiltAndroidTest
 class ShoppingDaoTest {
 
-    private lateinit var database: ShoppingItemDatabase
     private lateinit var dao: ShoppingDao
+
+    @get:Rule
+    var hiltRule = HiltAndroidRule(this)
 
     /**
      * A JUnit Test rule that swaps the background executor used by the Architecture
@@ -40,12 +47,13 @@ class ShoppingDaoTest {
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
 
+    @Inject
+    @Named("test_db")
+    lateinit var database: ShoppingItemDatabase
+
     @Before
     fun setup(){
-        database = Room
-            .inMemoryDatabaseBuilder(ApplicationProvider.getApplicationContext(), ShoppingItemDatabase::class.java)
-            .allowMainThreadQueries()// in Unit tests try to work on thee same thread, since multithreading manipulates each other
-            .build()
+        hiltRule.inject()
         dao = database.shoppingDao()
     }
 
